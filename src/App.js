@@ -1,9 +1,12 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
 import { database, ref, set, onValue } from './firebase';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import LoginPage from './LoginPage';
 import './styles.css';
 
-function App() {
+// Main app component
+function HomePage() {
     const [name, setName] = useState('');
     const [week, setWeek] = useState('');
     const [player, setPlayer] = useState('');
@@ -68,6 +71,30 @@ function App() {
                 ))}
             </ul>
         </div>
+    );
+}
+
+// App component with routing
+function App() {
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 

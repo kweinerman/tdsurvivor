@@ -1,6 +1,7 @@
 // src/firebase.js
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getDatabase, ref, set, onValue } from 'firebase/database';
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -16,5 +17,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app); // Initialize Firebase Authentication
 
-export { database, ref, set, onValue };
+export { database, ref, set, onValue, auth };
